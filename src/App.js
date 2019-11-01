@@ -89,15 +89,15 @@ const Home = props => {
     }
       let showSearchImages= images.map((image,i)=>{
         return (
-          <Col  style={{margin:'10px 0 0 0'}}  key= {i} > 
-            <Image  src={image.urls.regular}  width={408.5} height={400} alt={image.alt_description} rounded  />
+          <Col xs={6} md={4} style={{marginTop:'10px'}} key= {i} > 
+            <Image  src={image.urls.regular}  style={{margin:'0', padding:'0', width:'100%',height:400}} alt={image.alt_description} rounded  />
           </Col>
         )
       })
         const showImg=pictures.map((image,i)=>{
           return (
-            <Col style={{margin:'10px 0 0 0'}}  key= {i}> 
-              <Image src={image.urls.regular} width={408.5} height={400} alt={image.alt_description} rounded  />
+            <Col xs={6} md={4} style={{marginTop:'10px'}} key= {i} > 
+              <Image src={image.urls.regular} style={{margin:'0', padding:'0', width:'100%',height:400}} alt={image.alt_description} rounded  />
             </Col>
           )
         })
@@ -105,7 +105,7 @@ const Home = props => {
         return (
             <Container fluid >
               <div style={{
-                backgroundImage: "url(https://images.pexels.com/photos/754082/pexels-photo-754082.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)",
+                backgroundImage: "url(https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjk3Mzc5fQ)",
                 backgroundPosition: 'center',
                 repeat: 'no-repeat',
                 backgroundSize: 'cover',
@@ -115,7 +115,13 @@ const Home = props => {
                 <form  onSubmit={onFormSubmit}  style={{ position:'absolute', top:'30%', width:'100%'}}>
                   <label style={{ width:'100%'}}><h2 > Search Images </h2></label>
                   <input 
-                    style={{width:'50%',background:'transparent', border:' 1px solid white',outline:'none',borderRadius:"5px",color:'white', padding:'5px'}}
+                    style={{width:'50%',
+                      background:'transparent', 
+                      border:' 1px solid white',
+                      outline:'none',
+                      borderRadius:"5px",
+                      color:'white', 
+                      padding:'5px'}}
                     type="text"
                     placeholder='Search free photos'
                     value={val}
@@ -129,7 +135,9 @@ const Home = props => {
                 </button>
                 </div>
                 <div>{key && key.filter((item,index,self)=>self.indexOf(item) === index).map((item,i)=>{
-                  return <button key={i} onClick={()=>{onSearchSubmit(item)}}> {item} </button>
+                  return <button style={{backgroundColor:'orange',color:'white',border:'none',borderRadius:'5px',margin:'5px', textAlign:'center'}} key={i} onClick={()=>{onSearchSubmit(item)}}>
+                            {item} 
+                        </button>
                 })}
                 </div>
                 {images.length>0 &&
