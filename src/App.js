@@ -26,8 +26,6 @@ const Home = props => {
         setErrors([])
       }
   },[keywords] );
-
-
   const fetchData = ()=>{
     fetch('https://api.unsplash.com/photos/?client_id=90ed0b972bfde22b85b602119b8358a6a04ac9728771f3dcd391679653c5c9fc', {
               method: 'GET',
