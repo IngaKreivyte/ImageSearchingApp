@@ -122,10 +122,6 @@ const Home = props => {
                   />
                   <button style={{position:'absolute', right:'26%',top:'64%',border:'none',borderRadius:'5px', background:'transparent', color:'white', userSelect:'none',outline:'none',}}> <FontAwesomeIcon icon={faSearch}/></button>
                 </form>
-                <button style={{position:'absolute',top:'57%', right:'10%' ,border:'1px solid white',borderRadius:'5px',width:'80px', background:'transparent', color:'white', userSelect:'none',outline:'none',padding:'5px'}}>
-                  Save 
-                  <FontAwesomeIcon icon={faSave}/>
-                </button>
                 </div>
                 <div>{key && key.filter((item,index,self)=>self.indexOf(item) === index).map((item,i)=>{
                   return <button style={{backgroundColor:'orange',color:'white',border:'none',userSelect:'none',borderRadius:'5px',margin:'5px', textAlign:'center'}} key={i} onClick={()=>{onSearchSubmit(item)}}>
