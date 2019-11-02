@@ -5,6 +5,31 @@ body * {
     vertical-align: top;
     box-sizing: border-box;
 }
-button:focus{
-  outline: none;
+div {
+  form{
+    label{
+
+    }
+    input{
+      
+    }
+    button{
+    
+    }
+  }
+
+button{
+  
 }
+}
+div{
+  button{
+
+  }
+}
+    div{
+
+    }
+    div{
+      
+    }

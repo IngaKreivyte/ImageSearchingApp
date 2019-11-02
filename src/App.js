@@ -12,7 +12,7 @@ const Home = props => {
   const [key,setKey] = useState([]);
   const [tagName, setTagName]=useState([]);
   const [errors, setErrors]=useState([]);
-  const [loading,setLoading]=useState(false)
+  const [modal,setModal]=useState(false);
 
   useEffect(()=>{
     if(keywords<=0){
@@ -41,26 +41,11 @@ const Home = props => {
               setPictures( JSON.parse(data)) 
             });
   }
-    const onFormSubmit = (event) => {
-      
-      event.preventDefault();
-      console.log(loading);
-      onSearchSubmit(val);
-      if(loading){
-        console.log(loading);
-        key.push(val);
-        localStorage.setItem('keywords', JSON.stringify(key));
-        setKeywords(JSON.parse(localStorage.getItem('keywords')))
-      }
-         else{
-           return null;
-         }
-    }
+    
     const onSearchSubmit = async (term) => {
       
       setTagName(term)
       try {
-        setLoading(true);
       const response = await axios.get('https://api.unsplash.com/search/photos', {
             params: { query: term},
             headers: {
@@ -70,34 +55,42 @@ const Home = props => {
       if(response.data.total>0) {
         return (
            setImages(response.data.results),
-            setErrors([]))
+            setErrors([]),
+            key.push(val),
+          localStorage.setItem('keywords', JSON.stringify(key)),
+          setKeywords(JSON.parse(localStorage.getItem('keywords'))),
+          setVal([])
+            )
         }
         else return (
           setErrors('Unfortunately, Images are not found'),
           setImages([]),
-          setVal([])
+          setVal([]),
+          setModal(true)
         )
     } catch (error) {
-      setLoading(false);
-      console.log(error);
-      
+        console.log(error);
+      }  
     }
-      
+    const onFormSubmit = (event) => {
+      event.preventDefault();
+      if(val.length>0) return onSearchSubmit(val);
     }
+
     const onInputChange = (event) => {
-      setVal( event.target.value);
+     if(event.target.value.length>0)  return setVal( event.target.value);
     }
       let showSearchImages= images.map((image,i)=>{
         return (
           <Col xs={6} md={4} style={{marginTop:'10px'}} key= {i} > 
-            <Image  src={image.urls.regular}  style={{margin:'0', padding:'0', width:'100%',height:400}} alt={image.alt_description} rounded  />
+            <Image  src={image.urls.regular}  style={{margin:'0', padding:'0', width:'100%',height:250}} alt={image.alt_description} rounded  />
           </Col>
         )
       })
         const showImg=pictures.map((image,i)=>{
           return (
             <Col xs={6} md={4} style={{marginTop:'10px'}} key= {i} > 
-              <Image src={image.urls.regular} style={{margin:'0', padding:'0', width:'100%',height:400}} alt={image.alt_description} rounded  />
+              <Image src={image.urls.regular} style={{margin:'0', padding:'0', width:'100%',height:250}} alt={image.alt_description} rounded  />
             </Col>
           )
         })
@@ -135,7 +128,7 @@ const Home = props => {
                 </button>
                 </div>
                 <div>{key && key.filter((item,index,self)=>self.indexOf(item) === index).map((item,i)=>{
-                  return <button style={{backgroundColor:'orange',color:'white',border:'none',borderRadius:'5px',margin:'5px', textAlign:'center'}} key={i} onClick={()=>{onSearchSubmit(item)}}>
+                  return <button style={{backgroundColor:'orange',color:'white',border:'none',userSelect:'none',borderRadius:'5px',margin:'5px', textAlign:'center'}} key={i} onClick={()=>{onSearchSubmit(item)}}>
                             {item} 
                         </button>
                 })}
@@ -144,18 +137,18 @@ const Home = props => {
                   <div style={{backgroundColor:'blue',color:'white',padding:'20px 0', textAlign:'center'}}> 
                     Images related searches to “ {tagName}” 
                   </div>}
-                { errors.length>0 &&
-                  <div style={{backgroundColor:'red',color:'white', padding:'20px 0',textAlign:'center'}}> 
-                    {errors}
-                  </div>}
-                  { errors.length<=0 && images.length<=0 &&
-                  <div style={{backgroundColor:'blue',color:'white', padding:'20px 0',textAlign:'center'}}> 
-                  Random Images
-                  </div>}
-                {showSearchImages.length<1 && <Row> {showImg} </Row>}
+                {images.length<=0 &&
+                  <div> <Row> {showImg} </Row></div>}
                 <div>
                 <Row>{showSearchImages}</Row>
             </div>
+            {modal===true && 
+            <React.Fragment>
+            <div style={{width:'100%',height: '100vh',background: 'rgba(230, 222, 222, 0.4)',position: 'fixed',left: 0,top: 0, zIndex: 2}} 
+              onClick={()=>{setModal(false)}}/>
+            <div style={{position: 'fixed',left: '50%',top: '50%',borderRadius: '5px',transform:'translate(-50%,-50%)',padding: '20px 40px',
+            textAlign: 'center',zIndex: 3, backgroundColor: 'white', width:'800px',height: '500px'}}> <div>{errors}</div><button>back</button></div>
+            </React.Fragment>}
             </Container>
         )
 }
