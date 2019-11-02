@@ -1,7 +1,7 @@
 import React , {useState, useEffect}from 'react';
 import {Container,Row, Col,Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 const Home = props => {
@@ -20,6 +20,7 @@ const Home = props => {
     } else {
       setKey(keywords)
     }
+    
     fetchData();  
       return()=>{
         console.log('cleaning up');
@@ -56,10 +57,10 @@ const Home = props => {
         return (
            setImages(response.data.results),
             setErrors([]),
-            key.push(val),
-          localStorage.setItem('keywords', JSON.stringify(key)),
-          setKeywords(JSON.parse(localStorage.getItem('keywords'))),
-          setVal([])
+            val.length > 0 ?  key.push(val) : '',
+            localStorage.setItem('keywords', JSON.stringify(key)),
+            setKeywords(JSON.parse(localStorage.getItem('keywords'))),
+            setVal([])
             )
         }
         else return (
@@ -75,6 +76,8 @@ const Home = props => {
     const onFormSubmit = (event) => {
       event.preventDefault();
       if(val.length>0) return onSearchSubmit(val);
+      if(val.length<=0) return null;
+     
     }
 
     const onInputChange = (event) => {
@@ -103,6 +106,7 @@ const Home = props => {
                 repeat: 'no-repeat',
                 backgroundSize: 'cover',
                 color:'white',
+                marginBottom:'20px',
                 position:'relative',
                 textAlign:'center', height:'200px'}} >
                 <form  onSubmit={onFormSubmit}  style={{ position:'absolute', top:'30%', width:'100%'}}>
@@ -124,7 +128,8 @@ const Home = props => {
                 </form>
                 </div>
                 <div>{key && key.filter((item,index,self)=>self.indexOf(item) === index).map((item,i)=>{
-                  return <button style={{backgroundColor:'orange',color:'white',border:'none',userSelect:'none',borderRadius:'5px',margin:'5px', textAlign:'center'}} key={i} onClick={()=>{onSearchSubmit(item)}}>
+                  return <button style={{backgroundColor:'orange',color:'white',border:'none',userSelect:'none',borderRadius:'5px',margin:'5px', textAlign:'center'}} key={i} 
+                  onClick={()=>{onSearchSubmit(item)}}>
                             {item} 
                         </button>
                 })}
