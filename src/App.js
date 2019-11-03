@@ -1,7 +1,7 @@
 import React , {useState, useEffect}from 'react';
 import {Container,Row, Col,Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import './App.css';
 
@@ -123,10 +123,13 @@ const Home = props => {
               </div>
               {modal===true && 
                 <React.Fragment>
-                  <div style={{width:'100%',height: '100vh',background: 'rgba(230, 222, 222, 0.4)',position: 'fixed',left: 0,top: 0, zIndex: 2}} onClick={()=>{setModal(false)}}/>
-                  <div style={{position: 'fixed',left: '50%',top: '50%',borderRadius: '5px',transform:'translate(-50%,-50%)',padding: '20px 40px',textAlign: 'center',zIndex: 3, backgroundColor: 'white', width:'800px',height: '500px'}}>
+                  <div style={{width:'100%',height: '100vh',background: 'rgba(230, 222, 222, 0.4)',position: 'fixed',left: 0,top: 0, zIndex: 2}}/>
+                  <div style={{position: 'fixed',left: '50%',top: '50%',borderRadius: '5px',transform:'translate(-50%,-50%)',padding: '20px 40px',textAlign: 'center',zIndex: 3, backgroundColor: 'white', width:'50%',height: '50%'}}>
                     <div>{errors}</div>
-                    <button>back</button>
+                    <FontAwesomeIcon icon={faExclamation} style={{fontSize:80, margin:'20px 0'}}/>
+                    <div>
+                      <span style={{display:'inline-block',borderRadius:'5px',width:'150px', padding:'5px',backgroundColor:'orange',color:'white',cursor:'pointer'}} onClick={()=>{setModal(false)}}> Go back</span>
+                    </div>
                   </div>
               </React.Fragment>}
             </Container>
