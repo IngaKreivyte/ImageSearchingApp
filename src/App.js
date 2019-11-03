@@ -97,8 +97,8 @@ const Home = props => {
       )
     })  
         return (
-            <Container fluid class="container">
-              <div class="topcontainer">
+            <Container fluid className="container">
+              <div className="topcontainer">
                 <form onSubmit={onFormSubmit}  style={{ position:'absolute', top:'30%', width:'100%'}}>
                   <label style={{width:'100%'}}><h2 > Search Images </h2></label>
                   <input 
@@ -113,7 +113,7 @@ const Home = props => {
               <div style={{backgroundColor:'orange',color:'white',padding:'20px 0', textAlign:'center'}}> 
                 {images.length>0 ? `Images related searches to `+tagName+` ` : 'Random Images' } 
               </div>
-              <div class="keyContainer">{key && key.filter((item,index,self)=>self.indexOf(item) === index).map((item,i)=>{
+              <div className="keyContainer">{key && key.filter((item,index,self)=>self.indexOf(item) === index).map((item,i)=>{
                 return <button key={i} onClick={()=>{onSearchSubmit(item)}}>{item} </button>})}
               </div>
               {images.length<=0 &&
