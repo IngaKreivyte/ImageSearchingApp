@@ -5,3 +5,50 @@ body * {
     vertical-align: top;
     box-sizing: border-box;
 }
+ .topcontainer{
+    background-image: url(https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjk3Mzc5fQ);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color:white;
+    margin-bottom:10px;
+    position: relative;
+    text-align:center;
+    height:200px;
+}
+input{
+    width: 50%;
+    background: transparent;
+    border:1px solid white;
+    outline: none;
+    border-radius:5px;
+    color:white;
+    padding:5px;
+}
+form > button{
+    position: absolute;
+    top:64%;
+    right:26%;
+    border:none;
+    border-radius: 5px;
+    background: transparent;
+    color:white;
+    user-select:none;
+    outline:none;
+}
+form > button:focus{
+    outline: none;
+}
+.keyContainer > button{
+    background-color:orange;
+    color:white;
+    border:none;
+    user-select:none;
+    border-radius:5px;
+    margin:10px 5px 0;
+    text-align:center;
+    padding:5px;
+}
+.keyContainer > button:focus{
+    outline: none;
+}
