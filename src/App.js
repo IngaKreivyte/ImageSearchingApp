@@ -1,5 +1,5 @@
 import React , {useState, useEffect}from 'react';
-import {Container} from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 import {Card, CardColumns,} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faExclamation } from '@fortawesome/free-solid-svg-icons';
@@ -86,19 +86,19 @@ const Home = props => {
       let showSearchImages= images.map((image,i)=>{
         return (
           <Card style={{marginTop:'10px'}} key= {i} > 
-            <Card.Img src={image.urls.regular}  style={{margin:'0', padding:'0', width:'100%', height:'auto'}} alt={image.alt_description} rounded  />
+            <Card.Img src={image.urls.regular}  style={{margin:'0', padding:'0', width:'100%', height:'auto'}} alt={image.alt_description}   />
           </Card>
         )
       })
     const showImg=pictures.map((image,i)=>{
       return (
         <Card style={{marginTop:'10px'}} key= {i} > 
-          <Card.Img src={image.urls.regular} style={{margin:'0', padding:'0', width:'100%', height:'auto'}} alt={image.alt_description} rounded  />
+          <Card.Img src={image.urls.regular} style={{margin:'0', padding:'0', width:'100%', height:'auto'}} alt={image.alt_description}   />
         </Card>
       )
     })  
         return (
-            <Container fluid className="container">
+            <Container fluid  className="container">
               <div className="topcontainer">
                 <form onSubmit={onFormSubmit}  style={{ position:'absolute', top:'30%', width:'100%'}}>
                   <label style={{width:'100%'}}><h2 > Search Images </h2></label>
