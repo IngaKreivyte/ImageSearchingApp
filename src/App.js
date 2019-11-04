@@ -125,7 +125,7 @@ const Home = props => {
               {modal===true && 
                 <React.Fragment>
                   <div style={{width:'100%',height: '100vh',background: 'rgba(230, 222, 222, 0.4)',position: 'fixed',left: 0,top: 0, zIndex: 2}}/>
-                  <div style={{position: 'fixed',left: '50%',top: '50%',borderRadius: '5px',transform:'translate(-50%,-50%)',padding: '20px 40px',textAlign: 'center',zIndex: 3, backgroundColor: 'white', width:'60%',height: '50%'}}>
+                  <div style={{position: 'fixed',left: '50%',top: '50%',borderRadius: '5px',transform:'translate(-50%,-50%)',padding: '40px',textAlign: 'center',zIndex: 3, backgroundColor: 'white', width:'60%',height: '50%'}}>
                     <div>{errors}</div>
                     <FontAwesomeIcon icon={faExclamation} style={{fontSize:'50', margin:'10% 0'}}/>
                     <div>

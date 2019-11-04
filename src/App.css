@@ -22,29 +22,32 @@ body * {
     text-align:center;
     height:350px;
 }
-input{
-    width: 50%;
-    background: transparent;
-    border:1px solid white;
-    outline: none;
-    border-radius:5px;
-    color:white;
-    padding:5px;
+form{
+    font-size:20px;
 }
-form > button{
-    position: absolute;
-    top:64%;
-    right:26%;
-    border:none;
-    border-radius: 5px;
-    background: transparent;
-    color:white;
-    user-select:none;
-    outline:none;
-}
-form > button:focus{
-    outline: none;
-}
+    input{
+        width: 50%;
+        background: transparent;
+        border:1px solid white;
+        outline: none;
+        border-radius:5px;
+        color:white;
+        padding:5px;
+    }
+    form > button{
+        position: absolute;
+        top:64%;
+        right:26%;
+        border:none;
+        border-radius: 5px;
+        background: transparent;
+        color:white;
+        user-select:none;
+        outline:none;
+    }
+    form > button:focus{
+        outline: none;
+    }
 .keyContainer > button{
     background-color:orange;
     color:white;
