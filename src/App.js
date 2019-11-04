@@ -1,5 +1,6 @@
 import React , {useState, useEffect}from 'react';
-import {Container,Row, Col,Image } from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
+import {Card, CardColumns,} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
@@ -84,16 +85,16 @@ const Home = props => {
     }
       let showSearchImages= images.map((image,i)=>{
         return (
-          <Col xs={6} md={4} style={{marginTop:'10px'}} key= {i} > 
-            <Image  src={image.urls.regular}  style={{margin:'0', padding:'0', width:'100%',height:250}} alt={image.alt_description} rounded  />
-          </Col>
+          <Card style={{marginTop:'10px'}} key= {i} > 
+            <Card.Img src={image.urls.regular}  style={{margin:'0', padding:'0', width:'100%', height:'auto'}} alt={image.alt_description} rounded  />
+          </Card>
         )
       })
     const showImg=pictures.map((image,i)=>{
       return (
-        <Col xs={6} md={4} style={{marginTop:'10px'}} key= {i} > 
-          <Image src={image.urls.regular} style={{margin:'0', padding:'0', width:'100%',height:250}} alt={image.alt_description} rounded  />
-        </Col>
+        <Card style={{marginTop:'10px'}} key= {i} > 
+          <Card.Img src={image.urls.regular} style={{margin:'0', padding:'0', width:'100%', height:'auto'}} alt={image.alt_description} rounded  />
+        </Card>
       )
     })  
         return (
@@ -111,15 +112,15 @@ const Home = props => {
                 </form>
               </div>
               <div style={{backgroundColor:'orange',color:'white',padding:'20px 0', textAlign:'center'}}> 
-                {images.length>0 ? `Images related searches to `+tagName+` ` : 'Random Images' } 
+                {images.length>0 ? `Images related searches to “`+tagName+`“ ` : 'Random Images' } 
               </div>
               <div className="keyContainer">{key && key.filter((item,index,self)=>self.indexOf(item) === index).map((item,i)=>{
                 return <button key={i} onClick={()=>{onSearchSubmit(item)}}>{item} </button>})}
               </div>
               {images.length<=0 &&
-                <div> <Row> {showImg} </Row></div>}
+                <div> <CardColumns> {showImg} </CardColumns></div>}
               <div>
-                <Row>{showSearchImages}</Row>
+                <CardColumns>{showSearchImages}</CardColumns>
               </div>
               {modal===true && 
                 <React.Fragment>
