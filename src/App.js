@@ -61,13 +61,13 @@ const Home = props => {
           val.length > 0 ?  key.push(val) : '',
           localStorage.setItem('keywords', JSON.stringify(key)),
           setKeywords(JSON.parse(localStorage.getItem('keywords'))),
-          setVal([])
+          setVal('')
         )
       }
       else return (
           setErrors('Unfortunately, Images are not found'),
           setImages([]),
-          setVal([]),
+          setVal(''),
           setModal(true)
         )
       } catch (error) {
@@ -81,7 +81,7 @@ const Home = props => {
     }
 
     const onInputChange = (event) => {
-     if(event.target.value.length>0)  return setVal( event.target.value);
+      setVal( event.target.value);
     }
       let showSearchImages= images.map((image,i)=>{
         return (
